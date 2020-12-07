@@ -1,0 +1,7 @@
+
+
+# Maximum amount of players allowed to play.
+max-players: 36
+
+# Minimum amount of players required to play.
+min-players: 4
