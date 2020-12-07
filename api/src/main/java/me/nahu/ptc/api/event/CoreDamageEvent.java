@@ -32,8 +32,8 @@ public class CoreDamageEvent extends Event {
      * Get the lives left the core was left with.
      * @return Lives left.
      */
-    public int getLivesLeft() {
-        return core.getLivesLeft();
+    public int getHealth() {
+        return core.getHealth();
     }
 
     /**

@@ -14,13 +14,21 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 public class ProtectTheCoreGame extends JavaPlugin implements ProtectTheCore {
     private GameState gameState = GameState.LOBBY;
 
     private int minPlayers;
     private int maxPlayers;
+    private int coreLives;
+
+    private Material coreMaterial;
+    private Material destroyedCoreMaterial;
+
+    private Set<Team> teams = new HashSet<>();
 
     @Override
     public void onEnable() {
@@ -87,17 +95,22 @@ public class ProtectTheCoreGame extends JavaPlugin implements ProtectTheCore {
 
     @Override
     public void setCoreMaterial(@NotNull Material type) {
-
+        this.coreMaterial = type;
     }
 
     @Override
     public void setDestroyedCoreMaterial(@NotNull Material type) {
+        this.destroyedCoreMaterial = type;
+    }
 
+    @Override
+    public int getCoreLives() {
+        return coreLives;
     }
 
     @Override
     public void setCoreLives(int lives) {
-
+        this.coreLives = lives;
     }
 
     @Override
@@ -107,7 +120,7 @@ public class ProtectTheCoreGame extends JavaPlugin implements ProtectTheCore {
 
     @Override
     public @NotNull Collection<Team> getTeams() {
-        return null;
+        return teams;
     }
 
     @Override

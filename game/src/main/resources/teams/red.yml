@@ -1,0 +1,5 @@
+# Color of the team, it's an RGB integer.
+color: 0xFF0000
+
+# Icon of the team
+icon: 'RED_WOOL'

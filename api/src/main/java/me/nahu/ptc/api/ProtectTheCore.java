@@ -90,6 +90,12 @@ public interface ProtectTheCore {
     void setDestroyedCoreMaterial(@NotNull Material type);
 
     /**
+     * Get the amount of lives every core will start with.
+     * @return Starting core lives.
+     */
+    int getCoreLives();
+
+    /**
      * Set the amount of lives every core will start with.
      * @param lives Updated amount of lives.
      */
