@@ -1,17 +1,29 @@
 package me.nahu.ptc.api.team;
 
+import com.google.common.collect.ImmutableCollection;
 import me.nahu.ptc.api.user.User;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.Collection;
 
 /**
  * Protect the Core teams class.
  * @since 0.1.0
  */
 public interface Team {
+    /**
+     * Get the team identifier.
+     * @return Team identifier.
+     */
+    @NotNull
+    String getId();
+
+    /**
+     * Get the team name.
+     * @return Team name.
+     */
+    String getName();
+
     /**
      * Get the color that represents this team.
      * @return Color of the team.
@@ -31,7 +43,7 @@ public interface Team {
      * @return Collection of users.
      */
     @NotNull
-    Collection<User> getMembers();
+    ImmutableCollection<User> getMembers();
 
     /**
      * Get the amount of members that have joined the team.

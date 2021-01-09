@@ -4,6 +4,7 @@ import me.nahu.ptc.api.team.Team;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.UUID;
 
@@ -61,8 +62,14 @@ public interface User {
 
     /**
      * Get the team this player has chosen. Might be assigned randomly if none is chosen.
-     * @return Team the user has been assigned to.
+     * @return Team the user has been assigned to or null if none were assigned.
      */
-    @NotNull
+    @Nullable
     Team getTeam();
+
+    /**
+     * Assign a team to the player.
+     * @param team Team to assign for this player.
+     */
+    void setTeam(@NotNull Team team);
 }

@@ -1,25 +1,36 @@
 package me.nahu.ptc.game;
 
-import me.nahu.ptc.api.GameState;
+import com.google.common.collect.ImmutableCollection;
+import me.nahu.ptc.api.state.GameState;
 import me.nahu.ptc.api.ProtectTheCore;
 import me.nahu.ptc.api.event.GameStateChangeEvent;
 import me.nahu.ptc.api.team.Core;
 import me.nahu.ptc.api.team.Team;
 import me.nahu.ptc.api.user.User;
+import me.nahu.ptc.game.arena.GameArenaManager;
+import me.nahu.ptc.game.i18n.LocaleStore;
+import me.nahu.ptc.game.state.LobbyGameStateAction;
+import me.nahu.ptc.game.team.GameTeamManager;
+import me.nahu.ptc.game.user.GameUserManager;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 public class ProtectTheCoreGame extends JavaPlugin implements ProtectTheCore {
     private GameState gameState = GameState.LOBBY;
+
+    private GameTeamManager teamManager;
+    private GameUserManager userManager;
+    private GameArenaManager arenaManager;
+
+    private LocaleStore<GameLanguage> localeStore;
 
     private int minPlayers;
     private int maxPlayers;
@@ -28,11 +39,26 @@ public class ProtectTheCoreGame extends JavaPlugin implements ProtectTheCore {
     private Material coreMaterial;
     private Material destroyedCoreMaterial;
 
-    private Set<Team> teams = new HashSet<>();
+    private Location lobbyLocation;
 
     @Override
     public void onEnable() {
+        var config = getConfig();
+        minPlayers = config.getInt("min-players");
+        maxPlayers = config.getInt("max-players");
 
+        coreLives = config.getInt("core-lives");
+
+        coreMaterial = Material.matchMaterial(
+                Objects.requireNonNull(config.getString("core-material"), "configuration node 'core-material' cannot be null")
+        );
+        destroyedCoreMaterial = Material.matchMaterial(
+                Objects.requireNonNull(config.getString("destroyed-core-material"), "configuration node 'destroyed-core-material' cannot be null")
+        );
+
+        GameState.registerGameStateActions(
+                new LobbyGameStateAction(this)
+        );
     }
 
     @Override
@@ -47,10 +73,14 @@ public class ProtectTheCoreGame extends JavaPlugin implements ProtectTheCore {
 
     @Override
     public void setGameState(@NotNull GameState gameState) {
+        this.gameState.stop();
+
         Bukkit.getPluginManager().callEvent(
                 new GameStateChangeEvent(this.gameState, gameState) // event fired !
         );
+
         this.gameState = gameState;
+        this.gameState.handle();
     }
 
     @Override
@@ -90,7 +120,12 @@ public class ProtectTheCoreGame extends JavaPlugin implements ProtectTheCore {
 
     @Override
     public @NotNull World getGameWorld() {
-        return null;
+        return lobbyLocation.getWorld();
+    }
+
+    @Override
+    public @NotNull Location getLobbyLocation() {
+        return lobbyLocation;
     }
 
     @Override
@@ -119,12 +154,22 @@ public class ProtectTheCoreGame extends JavaPlugin implements ProtectTheCore {
     }
 
     @Override
-    public @NotNull Collection<Team> getTeams() {
-        return teams;
+    public @NotNull ImmutableCollection<Team> getTeams() {
+        return teamManager.getTeams();
     }
 
     @Override
-    public @NotNull Collection<User> getAllUsers() {
-        return null;
+    public @NotNull ImmutableCollection<User> getAllUsers() {
+        return userManager.getUsersMap().values();
+    }
+
+    @Override
+    public @NotNull Plugin getPlugin() {
+        return this;
+    }
+
+    @NotNull
+    public LocaleStore<GameLanguage> getLocaleStore() {
+        return localeStore;
     }
 }

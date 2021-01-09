@@ -1,6 +1,6 @@
 package me.nahu.ptc.api.event;
 
-import me.nahu.ptc.api.GameState;
+import me.nahu.ptc.api.state.GameState;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;

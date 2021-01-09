@@ -1,11 +1,11 @@
 # Team identifier
-id: 'red_team'
+id: 'blue_team'
 
 # Team name
-name: 'Red Team'
+name: 'Blue Team'
 
 # Color of the team, it's an RGB integer.
-color: 0xFF0000
+color: 0x0000FF
 
 # Icon of the team
 icon: RED_WOOL

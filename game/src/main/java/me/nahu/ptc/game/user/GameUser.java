@@ -58,4 +58,9 @@ public class GameUser implements User {
     public @NotNull Team getTeam() {
         return null;
     }
+
+    @Override
+    public void setTeam(@NotNull Team team) {
+
+    }
 }

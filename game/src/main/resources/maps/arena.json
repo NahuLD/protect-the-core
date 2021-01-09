@@ -1,0 +1,63 @@
+{
+  "id": 1,
+  "name": "Classic",
+  "world_name": "classic",
+  "teams": {
+    "red_team": {
+      "spawn": {
+        "world": "classic",
+        "x": 1.11,
+        "y": 2.22,
+        "z": 3.33
+      },
+      "core": {
+        "world": "classic",
+        "x": 1.11,
+        "y": 2.22,
+        "z": 3.33
+      }
+    },
+    "blue_team": {
+      "spawn": {
+        "world": "classic",
+        "x": 1.11,
+        "y": 2.22,
+        "z": 3.33
+      },
+      "core": {
+        "world": "classic",
+        "x": 1.11,
+        "y": 2.22,
+        "z": 3.33
+      }
+    },
+    "yellow_team": {
+      "spawn": {
+        "world": "classic",
+        "x": 1.11,
+        "y": 2.22,
+        "z": 3.33
+      },
+      "core": {
+        "world": "classic",
+        "x": 1.11,
+        "y": 2.22,
+        "z": 3.33
+      }
+    },
+    "green_team": {
+      "spawn": {
+        "world": "classic",
+        "x": 1.11,
+        "y": 2.22,
+        "z": 3.33
+      },
+      "core": {
+        "world": "classic",
+        "x": 1.11,
+        "y": 2.22,
+        "z": 3.33
+      }
+    }
+  }
+}

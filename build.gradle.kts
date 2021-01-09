@@ -42,6 +42,11 @@ subprojects {
             url = uri("https://repo.aikar.co/content/groups/aikar/")
         }
 
+        maven {
+            name = "themoep-repo"
+            url = uri("https://repo.minebench.de/")
+        }
+
         jcenter()
         mavenCentral()
     }

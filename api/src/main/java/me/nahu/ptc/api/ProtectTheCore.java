@@ -1,15 +1,19 @@
 package me.nahu.ptc.api;
 
+import com.google.common.collect.ImmutableCollection;
 import me.nahu.ptc.api.event.GameStateChangeEvent;
+import me.nahu.ptc.api.state.GameState;
 import me.nahu.ptc.api.team.Core;
 import me.nahu.ptc.api.team.Team;
 import me.nahu.ptc.api.user.User;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
+import org.bukkit.plugin.Plugin;
+import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Collection;
 import java.util.Optional;
 
 /**
@@ -78,6 +82,13 @@ public interface ProtectTheCore {
     World getGameWorld();
 
     /**
+     * The location of the lobby where joining players will be taken to.
+     * @return Lobby location.
+     */
+    @NotNull
+    Location getLobbyLocation();
+
+    /**
      * Set the material the core will use.
      * @param type Updated material type.
      */
@@ -115,12 +126,19 @@ public interface ProtectTheCore {
      * @return Collection of teams.
      */
     @NotNull
-    Collection<Team> getTeams();
+    ImmutableCollection<Team> getTeams();
 
     /**
      * Get all users on the game.
      * @return All users.
      */
     @NotNull
-    Collection<User> getAllUsers();
+    ImmutableCollection<User> getAllUsers();
+
+    /**
+     * Get as a Bukkit plugin object.
+     * @return Bukkit Plugin.
+     */
+    @NotNull
+    Plugin getPlugin();
 }

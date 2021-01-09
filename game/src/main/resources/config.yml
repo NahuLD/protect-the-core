@@ -1,7 +1,23 @@
-
-
 # Maximum amount of players allowed to play.
 max-players: 36
 
 # Minimum amount of players required to play.
 min-players: 4
+
+# The amount of lives every core will start out with.
+core-lives: 10
+
+# The material cores will be made out of.
+core-material: DIAMOND_BLOCK
+
+# The material destroyed cores will be made out of.
+destroyed-core-material: BEDROCK
+
+# Lobby location.
+lobby:
+  world: 'world'
+  x: 0.0
+  y: 20.0
+  z: 0.0
+  yaw: 0.0
+  pitch: 0.0

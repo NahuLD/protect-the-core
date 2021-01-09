@@ -1,5 +1,6 @@
 package me.nahu.ptc.api.arena;
 
+import com.google.common.collect.ImmutableCollection;
 import me.nahu.ptc.api.team.Core;
 import me.nahu.ptc.api.team.Team;
 import org.bukkit.Location;
@@ -43,10 +44,10 @@ public interface Arena {
 
     /**
      * Get all spawn locations.
-     * @return Map containing teams with their respective spawn locations.
+     * @return Immutable collection containing spawn locations.
      */
     @NotNull
-    Map<Team, Location> getSpawnLocations();
+    ImmutableCollection<Location> getSpawnLocations();
 
     /**
      * Get the core entity for a specific team.
@@ -58,8 +59,14 @@ public interface Arena {
 
     /**
      * Get all cores.
-     * @return Map containing teams with their respective core locations.
+     * @return Immutable collection with core objects.
      */
     @NotNull
-    Map<Team, Core> getCores();
+    ImmutableCollection<Core> getCores();
+
+    /**
+     * Check if the map is valid.
+     * @return Whether this arena is valid.
+     */
+    boolean isValid();
 }
