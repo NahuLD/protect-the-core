@@ -6,7 +6,7 @@ plugins {
 }
 
 configure<JavaPluginConvention> {
-    sourceCompatibility = JavaVersion.VERSION_11
+    sourceCompatibility = JavaVersion.VERSION_16
     targetCompatibility = sourceCompatibility
 }
 
@@ -52,7 +52,7 @@ subprojects {
     }
 
     dependencies {
-        compileOnly("com.destroystokyo.paper:paper-api:1.16.4-R0.1-SNAPSHOT")
+        compileOnly("io.papermc.paper:paper-api:1.17.1-R0.1-SNAPSHOT")
         compileOnly("org.jetbrains:annotations:20.1.0")
         implementation("co.aikar:acf-paper:0.5.0-SNAPSHOT")
     }
